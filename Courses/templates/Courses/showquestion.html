@@ -1,0 +1,34 @@
+
+<form action="" method="POST">
+{% csrf_token %}
+{% for item in questions %}
+<br>{{item.question}} <br>
+    <input type="checkBox" name="choice" value="{{item.first_choice}}"> {{item.first_choice}}
+    <input type="checkBox" name="choice" value="{{item.second_choice}}"> {{item.second_choice}}
+    <input type="checkBox" name="choice" value="{{item.third_choice}}"> {{item.third_choice}}
+    <input type="checkBox" name="choice" value="{{item.fourth_choice}}"> {{item.fourth_choice}}
+    {% endfor %}
+    <br>
+    <input type="button" id="btn" value="Submit">
+   
+</form>
+
+
+
+
+
+<script>
+    const btn = document.querySelector('#btn');
+    // handle click button
+    btn.onclick = function () {
+        const rbs = document.querySelectorAll('input[name="choice"]');
+        let selectedValue;
+        for (const rb of rbs) {
+            if (rb.checked) {
+                selectedValue = rb.value;
+                break;
+            }
+        }
+        alert(selectedValue);
+    };
+</script>
